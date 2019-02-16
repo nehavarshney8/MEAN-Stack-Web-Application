@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+
+
+    <title>SoftAOX | Simple Comment Box using AngularJS</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCZ5z9OlyDgtkYg_hMLMfCZDuru51cIgQ4"></script>
+</head>
+
+<body>
+    <h4 align="">
+        Attraction : {{ attraction?.att_name}}
+        <br/> Description : {{ attraction?.att_desc}}
+    </h4>
+    <img src="{{attraction?.img_src}}" alt="{{attraction?.att_name}}" width="80%" height="300">
+    <div class="container">
+        <form [formGroup]="commentFrm" (ngSubmit)="addComment(commentFrm.value)" *ngIf="commentFrm">
+            <div class="row">
+                <div>
+                    
+                        Add Comment
+                        <input type="text" name="comment_content" [formControl]="commentFrm.controls['comment_content']" formControlName="comment_content">
+                    
+
+                    <input type="submit" class="btn btn-primary" value="Post Comment" [disabled]="!commentFrm.valid">
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <ngb-rating [(rate)]="currentRate"></ngb-rating>
+    <hr>
+    <pre>Rate: <b>{{currentRate}}</b></pre>
+
+    <div *ngFor="let comm of attraction?.comments">
+        <p>Comments {{comm.comment_content}}</p>
+        <button (click)="deleteComment(comm._id)" class="btn btn-primary">Delete Comment</button>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>SoftAOX | Simple Comment Box using AngularJS</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCZ5z9OlyDgtkYg_hMLMfCZDuru51cIgQ4"></script>
+</head>
+
+<body>
+<!--HTML code to display Destination -->
+    <div class="container" *ngIf="destination">
+       <h1  class="aligntext"> <a routerLink="#">{{ destination.title }}</a></h1>
+        <p class="aligntext"> {{ destination.desc }} </p>
+        <div class="row">
+            <div class="col-md-4" *ngFor="let attrac of destination.attractions">
+                <div class=" thumbnail ">
+                    <a routerLink="/attractions/{{ attrac._id }}">
+                        <img src="{{attrac.img_src}}" alt="Lights " style="width:100% ">
+                        <div class="caption ">
+                            <h3> {{ attrac.att_name }} </h3>
+                            <p> {{ attrac.att_desc | slice: 0:330 }} </p>
+                        </div>
+                    </a>
+
+                </div>
+                <agm-map [latitude]="destination.latitude" [longitude]="destination.longitude">
+                    <agm-marker [latitude]="destination.latitude" [longitude]="destination.longitude"></agm-marker>
+                </agm-map>
+            </div>
+            </div>
+            </div>
+            </body>
+            </html>
+           
+           

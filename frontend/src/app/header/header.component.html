@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+    <!-- Brand/logo -->
+    <a class="navbar-brand" routerLink="/">Travel Guide</a>
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/worldsBest">World's Best</a>
+        </li>
+        <!-- <li class="nav-item">
+            <a class="nav-link" href="#">Trip Ideas</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Subscribe</a>
+        </li> -->
+    </ul>
+
+    <!-- Links -->
+    <ul class="navbar-nav  ml-auto">
+        <li class="nav-item">
+            <a *ngIf="!auth.isAuthenticated" class="nav-link" routerLink="/login">Login</a>
+        </li>
+        <li class="nav-item">
+            <a routerLink="/createUser" *ngIf="!auth.isAuthenticated" class="nav-link">Register</a>
+        </li>
+        <li class="nav-item">
+            <a *ngIf="auth.isAuthenticated" class="nav-link" routerLink="/">Welcome {{auth.name}}</a>
+        </li>
+        <li class="nav-item">
+            <a *ngIf="auth.isAuthenticated" class="nav-link" (click)="auth.logout()">Logout</a>
+        </li>
+    </ul>
+</nav>
+
